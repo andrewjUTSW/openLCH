@@ -1,27 +1,32 @@
 # [Live Cell Histology](https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1)
 
 Extracting latent features from label-free live cell images using [Adversarial Autoencoders](https://arxiv.org/abs/1511.05644)
-
 Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
 
-
-(image from publications )
 ![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
 ![fig1](/img/LCH_figure.png)
 
-## Running Source Code 
+## Setup & Running Source Code 
 
-Code was developed on linux.
+Code was developed/teseted on Linux.
 
 ### Installation Steps
-
-### Docker/Singulartity Container
-
+#### Containers
 - Download container images:
-    - Docker link (cloud/)
-    - Singulartiy  (cloud/singularity hub?)
+    - Dockerfile?
+	- Docker link (cloud?)
+    - Singulartiy (cloud/singularity hub?)
 
+#### Download and Prepare Example Data
 
+- Download co (add directory data here with 10 images?)
+	- unzip code and data
+	- create image list file with <bash script example>
+	- 
+
+#### Run Example Scripts 
+
+- Train AAE
 
 
 ## Citation
