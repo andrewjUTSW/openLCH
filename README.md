@@ -6,8 +6,8 @@ Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v
 
 
 (image from publications )
-(/img/LCH_figure.png)
-
+![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
+![fig1](/img/LCH_figure.png)
 
 ## Running Source Code 
 
