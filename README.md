@@ -6,11 +6,11 @@ Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v
 
 ![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
 
-![fig1](/img/LCH_smaller2_fig.png)
+![fig1](/img/LCH_smaller3_fig.png)
 
 ## Setup & Running Source Code 
 
-Code was developed/teseted on Linux.
+Code was developed on Linux.
 
 ### Installation Steps
 
@@ -22,10 +22,11 @@ Code was developed/teseted on Linux.
 
 #### Download and Prepare Example Data
 
-- Download co (add directory data here with 10 images?)
+- Download code and sample data 
 	- unzip code and data
+	- Included are a random sample set of 256x256 cell images 
 	- create image list file with <bash script example>
-	- 
+	 
 
 #### Run Example Scripts 
 
