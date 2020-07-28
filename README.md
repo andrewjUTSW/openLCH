@@ -33,11 +33,13 @@ Developed on Linux.
 	- INPUT: image file list
 	- OUTPUT: trained AAE
 - Extract latent embeddings (call_DynComputeEmbeddingsRobust_CLEAN.lua)
+	- ![dr](img/extractLatent.png)
 - Interpolate between reconstructed cell images (interp_LatentSpace_LCH_MD_single_CLEAN.lua [link])
-	- (snaphot?)
+	- ![interp2](img/InterpExample.png)
 - Explore Latent Space (exploreZ_LatentSpace_LCH_single_CLEAN.lua)
 	- (snapshot?)
 - Reconstruct images from latent codes (zLatent2ReconBatchLCH_CLEAN.lua)
+	- ![recon](img/reconLatent.png)
 
 ## Citation
 ```bibtex
