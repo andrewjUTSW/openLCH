@@ -4,9 +4,8 @@ Extracting latent features from label-free live cell images using [Adversarial A
 
 Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
 
-![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
-
 ![fig1](/img/LCH_smaller3_fig.png)
+![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
 
 ## Setup & Running Source Code 
 
@@ -27,11 +26,16 @@ Code was developed on Linux.
 	- Included are a random sample set of 256x256 cell images 
 	- create image list file with <bash script example>
 	 
-
 #### Run Example Scripts 
 
-- Train AAE
-
+- Train AAE (run_mainLCH_AAE_Train_CLEAN.lua[link])
+	- INPUT: image file list
+	- OUTPUT: trained AAE
+- Extract latent embeddings (call_DynComputeEmbeddingsRobust_CLEAN.lua)
+- Interpolate between reconstructed cell images (interp_LatentSpace_LCH_MD_single_CLEAN.lua [link])
+	- (snaphot?)
+- Explore Latent Space (exploreZ_LatentSpace_LCH_single_CLEAN.lua)
+	- (snapshot?)
 
 ## Citation
 ```bibtex
