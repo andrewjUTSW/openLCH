@@ -4,8 +4,7 @@ Extracting latent features from label-free live cell images using [Adversarial A
 
 Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
 
-![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
-![fig1](/img/LCH_figure.png)
+![fig1](/img/LCH_smaller2_fig.png)
 
 ## Setup & Running Source Code 
 
