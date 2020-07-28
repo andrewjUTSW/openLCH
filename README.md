@@ -1,6 +1,7 @@
 # [Live Cell Histology](https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1)
 
 Extracting latent features from label-free live cell images using [Adversarial Autoencoders](https://arxiv.org/abs/1511.05644)
+
 Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
 
 ![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
