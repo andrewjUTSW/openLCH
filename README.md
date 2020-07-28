@@ -2,19 +2,20 @@
 
 Extracting latent features from label-free live cell images using [Adversarial Autoencoders](https://arxiv.org/abs/1511.05644)
 
-Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
+#### Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
 
 ![fig1](/img/LCH_smaller3_fig.png)
 ![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
 
 ## Setup & Running Source Code 
 
-Code was developed on Linux.
+Developed on Linux.
 
 ### Installation Steps
 
 #### Containers
-- Download container images:
+
+- Set-up/download container images:
     - Dockerfile?
 	- Docker link (cloud?)
     - Singulartiy (cloud/singularity hub?)
@@ -36,6 +37,7 @@ Code was developed on Linux.
 	- (snaphot?)
 - Explore Latent Space (exploreZ_LatentSpace_LCH_single_CLEAN.lua)
 	- (snapshot?)
+- Reconstruct images from latent codes (zLatent2ReconBatchLCH_CLEAN.lua)
 
 ## Citation
 ```bibtex
