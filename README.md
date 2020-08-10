@@ -29,6 +29,7 @@ Developed on Linux.
 	 
 #### Run Example Scripts 
 
+- exampleScripts.sh
 - Train AAE (run_mainLCH_AAE_Train_CLEAN.lua[link])
 	- INPUT: image file list
 	- OUTPUT: trained AAE
