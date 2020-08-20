@@ -38,7 +38,7 @@ Developed and tested on Red Hat Linux 7.
 	 
 #### Run Provided Example Scripts 
 
-- Quick test code with linear interpolation in latent space between two images using previously trained AAE
+- Quick test code with linear interpolation between two reconstructed cell images using previously trained AAE
 	- [interp_LatentSpace_LCH_MD_single_2.lua](code/interp_LatentSpace_LCH_MD_single_2.lua)
 ```bash
 	export LCH_PATH=YOUR_CODE_PATH_HERE
@@ -47,10 +47,11 @@ Developed and tested on Red Hat Linux 7.
 	-imPathFile $LCH_PATH/imagePathList.txt \
 	-autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
 	-outDir $LCH_PATH/output/interpOut/ \
-	-gpu 1'	
+	-gpu 1 \
 	-img1 501 \
-	-img2 801 \
+	-img2 801'
 ```
+![interp2](img/InterpExample.png)
 
 - Train new AAE
 	- [run_mainLCH_AAE_Train_2.lua](code/run_mainLCH_AAE_Train_2.lua)
@@ -63,11 +64,11 @@ Developed and tested on Red Hat Linux 7.
 	-imPathFile $LCH_PATH/imagePathList.txt \
 	-savedir $LCH_PATH/outputNew/ \
 	-epochs 100 \
-	-gpu 1 \' 
+	-gpu 1' 
 ```
+
 - Extract latent embeddings
 	- [call_DynComputeEmbeddingsRobust_2.lua](code/call_DynComputeEmbeddingsRobust_2.lua)
-	- ![dr](img/extractLatent.png)
 ```bash 
 	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
 	th ./call_DynComputeEmbeddingsRobust_2.lua \
@@ -78,12 +79,35 @@ Developed and tested on Red Hat Linux 7.
 	-gpu 2 \
 	-embeddingFile $LCH_PATH/outputNew/embeddings_sampleTest.csv'
 ```
-- Interpolate between reconstructed cell images (interp_LatentSpace_LCH_MD_single_CLEAN.lua [link])
-	- ![interp2](img/InterpExample.png)
-- Explore Latent Space (exploreZ_LatentSpace_LCH_single_CLEAN.lua)
+![dr](img/extractLatent.png)
+
+- Interpolate between  cell images (interp_LatentSpace_LCH_MD_single_CLEAN.lua [link])
+
+- Explore latent space by shifting emebddding vectors values and reconstructing images
 	- (snapshot?)
-- Reconstruct images from latent codes (zLatent2ReconBatchLCH_CLEAN.lua)
-	- ![recon](img/reconLatent.png)
+	- [exploreZ_LatentSpace_LCH_single_2.lua](code/exploreZ_LatentSpace_LCH_single_2.lua)
+```bash
+	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
+	-imPathFile $LCH_PATH/imagePathList.txt \
+	-autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
+	-outDir $LCH_PATH/outputOrig/zExploreOut \
+	-img1 10 \
+	-uR 1 \
+	-numSteps 6'
+```
+
+- Reconstruct images from latent codes
+	- [zLatent2ReconBatchLCH_2.lua](code/zLatent2ReconBatchLCH_2.lua)
+```bash
+	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	th -i ./zLatent2ReconBatchLCH_2.lua \
+	-autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
+	-zLatentFile $LCH_PATH/outputNew/embeddings_sampleTest.csv \
+	-reconPath $LCH_PATH/outputNew/zRecon/ \
+	-nLatentDims 56'
+```
+![recon](img/reconLatent.png)
 
 ## Citation
 ```bibtex
@@ -99,4 +123,5 @@ Developed and tested on Red Hat Linux 7.
 }
 ```
 
-Inspiration: https://github.com/AllenCellModeling/torch_integrated_cell/
+#### Inspiration
+- https://github.com/AllenCellModeling/torch_integrated_cell/
