@@ -19,7 +19,7 @@
 -- singularity exec --nv openLCH_latest.sif /bin/bash -c '<code>'
 
 -- # sample images/run
--- th -i ./zLatent2ReconBatchLCH_CLEAN.lua \
+-- th -i ./zLatent2ReconBatchLCH_2.lua \
 -- -autoencoder output/autoencoder_eval.t7 \
 -- -zLatentFile output/embeddings_sampleTest.csv \
 -- -reconPath output/zRecon/ \
