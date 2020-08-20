@@ -33,7 +33,9 @@ git clone https://github.com/andrewjUTSW/openLCH
 
 
 # 4) Set up working computing/GPU CUDA environment using Singularity (https://sylabs.io/singularity/)
-# Tested with Singularity 3.5.3 on RedHat Linux 7
+# also see: https://portal.biohpc.swmed.edu/content/guides/singularity-containers-biohpc/
+
+# Tested with Singularity 3.5.3 on RedHat Linux 7 (module add singularity/3.5.3)
 # NOTE, requires CUDA 8.0+ compatible GPU (e.g., P100)
 # pull singularity container
 singularity pull shub://andrewjUTSW/openLCH:latest
@@ -49,12 +51,11 @@ curl https://cloud.biohpc.swmed.edu/index.php/s/YAQQtpwTX2NKS89/download --outpu
 
 # (optional) Set CODE PATH for convenience in scripts below
 export LCH_PATH=YOUR_CODE_PATH_HERE
-# module add singularity/3.5.3
+
 
 # 6) Quick test of torch code with previously trained autoencoder [Interpolation example]
 # Run example image interpolation in latent space to generate synthetic images between two sample images  
 singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
-LCH_PATH=/work/bioinformatics/s170480/Analysis/LCH/sampleCode; \
 th -i ./interp_LatentSpace_LCH_MD_single_2.lua \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
@@ -102,7 +103,7 @@ th ./call_DynComputeEmbeddingsRobust_2.lua \
 # using pre-trained autoencoder and computed embeddings from previous step
 # first 
 singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
-th -i ./zLatent2ReconBatchLCH_CLEAN.lua \
+th -i ./zLatent2ReconBatchLCH_2.lua \
 -autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
 -zLatentFile $LCH_PATH/outputNew/embeddings_sampleTest.csv \
 -reconPath $LCH_PATH/outputNew/zRecon/ \
@@ -115,7 +116,7 @@ th -i ./zLatent2ReconBatchLCH_CLEAN.lua \
 
 ## Example using TRAINED autoencoder
 singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
-th -i ./exploreZ_LatentSpace_LCH_single_CLEAN.lua \
+th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
 -outDir $LCH_PATH/outputOrig/zExploreOut \
@@ -125,7 +126,7 @@ th -i ./exploreZ_LatentSpace_LCH_single_CLEAN.lua \
 
 # Example with newly trained autoencoder
 singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
-th -i ./exploreZ_LatentSpace_LCH_single_CLEAN.lua \
+th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -autoencoder $LCH_PATH/outputNew/autoencoder_eval.t7 \
 -outDir $LCH_PATH/outputNew/zExploreOut \
