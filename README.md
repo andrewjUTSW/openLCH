@@ -33,24 +33,51 @@ Developed and tested on Red Hat Linux 7.
 	- Included are a random sample set of 256x256 cell images 
 	- Create image file list ```ls `pwd`/data2/*.png > imagePathList.txt```
 	- Full data set provided here: <TBD>
+	- Download previously trained [autoencoder .t7 file](https://cloud.biohpc.swmed.edu/index.php/s/YAQQtpwTX2NKS89/download)
+		- `curl https://cloud.biohpc.swmed.edu/index.php/s/YAQQtpwTX2NKS89/download --output autoencoder_eval_56zTRAINED.t7`
 	 
 #### Run Provided Example Scripts 
 
-- Train AAE [run_mainLCH_AAE_Train_2.lua](code/run_mainLCH_AAE_Train_2.lua)
+- Quick test code with linear interpolation in latent space between two images using previously trained AAE
+	- [interp_LatentSpace_LCH_MD_single_2.lua](code/interp_LatentSpace_LCH_MD_single_2.lua)
 ```bash
-export LCH_PATH=YOUR_CODE_PATH_HERE
-singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
-th ./run_mainLCH_AAE_Train_2.lua \
--modelname AAEconv_CLEAN \
--nLatentDims 56 \
--imsize 256 \
--imPathFile $LCH_PATH/imagePathList.txt \
--savedir $LCH_PATH/outputNew/ \
--epochs 100 \
--gpu 1 \'
+	export LCH_PATH=YOUR_CODE_PATH_HERE
+	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	th -i ./interp_LatentSpace_LCH_MD_single_2.lua \
+	-imPathFile $LCH_PATH/imagePathList.txt \
+	-autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
+	-outDir $LCH_PATH/output/interpOut/ \
+	-gpu 1'	
+	-img1 501 \
+	-img2 801 \
 ```
-- Extract latent embeddings (call_DynComputeEmbeddingsRobust_CLEAN.lua)
+
+- Train new AAE
+	- [run_mainLCH_AAE_Train_2.lua](code/run_mainLCH_AAE_Train_2.lua)
+```bash
+	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	th ./run_mainLCH_AAE_Train_2.lua \
+	-modelname AAEconv_CLEAN \
+	-nLatentDims 56 \
+	-imsize 256 \
+	-imPathFile $LCH_PATH/imagePathList.txt \
+	-savedir $LCH_PATH/outputNew/ \
+	-epochs 100 \
+	-gpu 1 \' 
+```
+- Extract latent embeddings
+	- [call_DynComputeEmbeddingsRobust_2.lua](code/call_DynComputeEmbeddingsRobust_2.lua)
 	- ![dr](img/extractLatent.png)
+```bash 
+	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	th ./call_DynComputeEmbeddingsRobust_2.lua \
+	-autoencoder $LCH_PATH/outputNew/autoencoder_eval.t7 \
+	-imsize 256 \
+	-dataProvider DynDataProviderRobust_2 \
+	-imPathFile $LCH_PATH/imagePathList.txt \
+	-gpu 2 \
+	-embeddingFile $LCH_PATH/outputNew/embeddings_sampleTest.csv'
+```
 - Interpolate between reconstructed cell images (interp_LatentSpace_LCH_MD_single_CLEAN.lua [link])
 	- ![interp2](img/InterpExample.png)
 - Explore Latent Space (exploreZ_LatentSpace_LCH_single_CLEAN.lua)
