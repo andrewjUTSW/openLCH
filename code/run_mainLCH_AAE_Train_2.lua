@@ -72,8 +72,8 @@ cmd:option('-seed',              1, 'random seed')
 cmd:option('-load_autoencoder',  '', 'load a specific autoencoder')
 -- saving settings
 cmd:option('-savedir',           './trainingOutput', 'save dir')
-cmd:option('-saveStateIter',     5, 'Iterations between saving model states')
-cmd:option('-saveProgressIter',  5, 'Iterations between save progress states')
+cmd:option('-saveStateIter',     1, 'Iterations between saving model states')
+cmd:option('-saveProgressIter',  1, 'Iterations between save progress states')
 cmd:option('-snapshotFrequency', 200, 'Iterations between snapshoot progress states')
 cmd:option('-numZsamples',       8, 'number of mcmc samples to preview training progress')
 cmd:option('-saveEmbedding',     false, '[0/1] save embedding codes for data set')
@@ -94,7 +94,7 @@ cmd:option('-useParallel',        0, 'attempt to load images with parallel threa
 cmd:option('-numThreadsLoad',     10, 'attempt to load images with parallel threads')
 
 -- training settings
-cmd:option('-batchSize',         75, 'Minibatch size for updating AAE network')
+cmd:option('-batchSize',         50, 'Minibatch size for updating AAE network')
 cmd:option('-optimizer',         'adam', 'optimization method')
 cmd:option('-learningRate',      0.0002, 'learning rate')
 cmd:option('-mcmc',              1, 'MCMC samples')

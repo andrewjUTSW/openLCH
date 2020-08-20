@@ -76,7 +76,6 @@ th ./run_mainLCH_AAE_Train_2.lua \
 -savedir $LCH_PATH/outputNew/ \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -modelname AAEconv_CLEAN \
--epochs 100 \
 -saveProgressIter 1 \
 -saveStateIter 1 \
 -batchSize 50 \
