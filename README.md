@@ -94,7 +94,7 @@ Developed and tested on Red Hat Linux 7.
 	-uR 1 \
 	-numSteps 6'
 ```
-![recon](img/zExplore2.png)
+![recon](img/zExplore2)
 
 #### Reconstruct images from latent codes
 - [zLatent2ReconBatchLCH_2.lua](code/zLatent2ReconBatchLCH_2.lua)
