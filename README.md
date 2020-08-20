@@ -12,7 +12,7 @@ Extracting latent features from label-free live cell images using [Adversarial A
 Developed and tested on Red Hat Linux 7.
 
 ### Installation Steps
-
+- also see more detailed information [here](instructionsToinstallOpenLCH.sh): 
 #### Containers
 
 - Set-up compute environment with containers:
@@ -26,16 +26,29 @@ Developed and tested on Red Hat Linux 7.
 
 #### Download and Prepare Example Data
 
-- Download code and sample data 
-	- unzip code and data
+- Download 2000 image sample data set
+	- `curl https://cloud.biohpc.swmed.edu/index.php/s/FqZSqoKfHii6ony/download --output sample2000.tar.gz` 
+	- unzip data
+		- `tar xvzf ./sample2000.tar.gz`
 	- Included are a random sample set of 256x256 cell images 
-	- create image list file with <bash script example>
+	- Create image file list ```ls `pwd`/data2/*.png > imagePathList.txt```
+	- Full data set provided here: <TBD>
 	 
-#### Run Example Scripts 
+#### Run Provided Example Scripts 
 
-- Train AAE (run_mainLCH_AAE_Train_CLEAN.lua[link])
-	- INPUT: image file list
-	- OUTPUT: trained AAE
+- Train AAE [run_mainLCH_AAE_Train_2.lua](code/run_mainLCH_AAE_Train_2.lua)
+```bash
+export LCH_PATH=YOUR_CODE_PATH_HERE
+singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+th ./run_mainLCH_AAE_Train_2.lua \
+-modelname AAEconv_CLEAN \
+-nLatentDims 56 \
+-imsize 256 \
+-imPathFile $LCH_PATH/imagePathList.txt \
+-savedir $LCH_PATH/outputNew/ \
+-epochs 100 \
+-gpu 1 \'
+```
 - Extract latent embeddings (call_DynComputeEmbeddingsRobust_CLEAN.lua)
 	- ![dr](img/extractLatent.png)
 - Interpolate between reconstructed cell images (interp_LatentSpace_LCH_MD_single_CLEAN.lua [link])
