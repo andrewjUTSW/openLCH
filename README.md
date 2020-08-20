@@ -12,7 +12,7 @@ Extracting latent features from label-free live cell images using [Adversarial A
 Developed and tested on Red Hat Linux 7.
 
 ### Installation Steps
-- also see more detailed information [here](instructionsToinstallOpenLCH.sh): 
+- also see more detailed information [here](instructionsToinstallOpenLCH.sh) 
 #### Containers
 
 - Set-up compute environment with containers:
@@ -36,7 +36,7 @@ Developed and tested on Red Hat Linux 7.
 	- Download previously trained [autoencoder .t7 file](https://cloud.biohpc.swmed.edu/index.php/s/YAQQtpwTX2NKS89/download)
 		- `curl https://cloud.biohpc.swmed.edu/index.php/s/YAQQtpwTX2NKS89/download --output autoencoder_eval_56zTRAINED.t7`
 	 
-#### Run Provided Example Scripts 
+### Run Provided Example Scripts 
 
 - Quick test code with linear interpolation between two reconstructed cell images using previously trained AAE
 	- [interp_LatentSpace_LCH_MD_single_2.lua](code/interp_LatentSpace_LCH_MD_single_2.lua)
@@ -53,8 +53,8 @@ Developed and tested on Red Hat Linux 7.
 ```
 ![interp2](img/InterpExample.png)
 
-- Train new AAE
-	- [run_mainLCH_AAE_Train_2.lua](code/run_mainLCH_AAE_Train_2.lua)
+#### Train new AAE
+- [run_mainLCH_AAE_Train_2.lua](code/run_mainLCH_AAE_Train_2.lua)
 ```bash
 	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
 	th ./run_mainLCH_AAE_Train_2.lua \
@@ -67,8 +67,8 @@ Developed and tested on Red Hat Linux 7.
 	-gpu 1' 
 ```
 
-- Extract latent embeddings
-	- [call_DynComputeEmbeddingsRobust_2.lua](code/call_DynComputeEmbeddingsRobust_2.lua)
+#### Extract latent embeddings
+- [call_DynComputeEmbeddingsRobust_2.lua](code/call_DynComputeEmbeddingsRobust_2.lua)
 ```bash 
 	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
 	th ./call_DynComputeEmbeddingsRobust_2.lua \
@@ -81,11 +81,9 @@ Developed and tested on Red Hat Linux 7.
 ```
 ![dr](img/extractLatent.png)
 
-- Interpolate between  cell images (interp_LatentSpace_LCH_MD_single_CLEAN.lua [link])
+#### Explore latent space by shifting embedding vector values (one dimension at a time) of an image and reconstructing images
+- [exploreZ_LatentSpace_LCH_single_2.lua](code/exploreZ_LatentSpace_LCH_single_2.lua)
 
-- Explore latent space by shifting emebddding vectors values and reconstructing images
-	- (snapshot?)
-	- [exploreZ_LatentSpace_LCH_single_2.lua](code/exploreZ_LatentSpace_LCH_single_2.lua)
 ```bash
 	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
 	th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
@@ -97,8 +95,8 @@ Developed and tested on Red Hat Linux 7.
 	-numSteps 6'
 ```
 
-- Reconstruct images from latent codes
-	- [zLatent2ReconBatchLCH_2.lua](code/zLatent2ReconBatchLCH_2.lua)
+#### Reconstruct images from latent codes
+- [zLatent2ReconBatchLCH_2.lua](code/zLatent2ReconBatchLCH_2.lua)
 ```bash
 	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
 	th -i ./zLatent2ReconBatchLCH_2.lua \
