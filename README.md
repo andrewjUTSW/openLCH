@@ -9,16 +9,20 @@ Extracting latent features from label-free live cell images using [Adversarial A
 
 ## Setup & Running Source Code 
 
-Developed on Linux.
+Developed and tested on Red Hat Linux 7.
 
 ### Installation Steps
 
 #### Containers
 
-- Set-up/download container images:
-    - Dockerfile?
-	- Docker link (cloud?)
-    - Singulartiy (cloud/singularity hub?)
+- Set-up compute environment with containers:
+    - Install [Singularity](https://sylabs.io/docs/)
+	- Tested with Singularity 3.5.3 
+	- Need CUDA 8.0+ compatible GPU and drivers (e.g. P100)
+	- Pull Singularity container .sif image file from [Singularity Hub](https://singularity-hub.org/)
+		- alternatively, a copy can be found [here](https://cloud.biohpc.swmed.edu/index.php/s/a88iQABCbg7SWwi/download) 
+	- `singularity pull shub://andrewjUTSW/openLCH:latest`
+	- Test GPU `singularity exec --nv ./openLCH_latest.sif nvidia-smi`
 
 #### Download and Prepare Example Data
 
@@ -29,7 +33,6 @@ Developed on Linux.
 	 
 #### Run Example Scripts 
 
-- exampleScripts.sh
 - Train AAE (run_mainLCH_AAE_Train_CLEAN.lua[link])
 	- INPUT: image file list
 	- OUTPUT: trained AAE
