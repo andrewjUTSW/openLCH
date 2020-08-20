@@ -112,7 +112,7 @@ th -i ./zLatent2ReconBatchLCH_2.lua \
 -nLatentDims 56'
 
 # Can download embddings vectors.
-
+# https://cloud.biohpc.swmed.edu/index.php/s/M7Q4zYyqfB7XQQ4/download
 
 #10) Illustration of Latent Space Exploration by shifting embedding values ("zShift")
 
