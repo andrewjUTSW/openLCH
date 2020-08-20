@@ -1,6 +1,6 @@
 # [Live Cell Histology](https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1)
 
-Extracting latent features from label-free live cell images using [Adversarial Autoencoders](https://arxiv.org/abs/1511.05644)
+- Extracting latent features from label-free live cell images using [Adversarial Autoencoders](https://arxiv.org/abs/1511.05644)
 
 #### Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
 
@@ -38,8 +38,8 @@ Developed and tested on Red Hat Linux 7.
 	 
 ### Run Provided Example Scripts 
 
-- Quick test code with linear interpolation between two reconstructed cell images using previously trained AAE
-	- [interp_LatentSpace_LCH_MD_single_2.lua](code/interp_LatentSpace_LCH_MD_single_2.lua)
+#### Linear interpolation between two reconstructed cell images using previously trained AAE
+- [interp_LatentSpace_LCH_MD_single_2.lua](code/interp_LatentSpace_LCH_MD_single_2.lua)
 ```bash
 	export LCH_PATH=YOUR_CODE_PATH_HERE
 	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
@@ -81,7 +81,7 @@ Developed and tested on Red Hat Linux 7.
 ```
 ![dr](img/extractLatent.png)
 
-#### Explore latent space by shifting embedding vector values (one dimension at a time) of an image and reconstructing images
+#### Explore latent space by shifting embedding vector values (one dimension at a time) of an input cell image and reconstructing shifted synthetic cell images
 - [exploreZ_LatentSpace_LCH_single_2.lua](code/exploreZ_LatentSpace_LCH_single_2.lua)
 
 ```bash
@@ -94,6 +94,7 @@ Developed and tested on Red Hat Linux 7.
 	-uR 1 \
 	-numSteps 6'
 ```
+![recon](img/zExplore.png)
 
 #### Reconstruct images from latent codes
 - [zLatent2ReconBatchLCH_2.lua](code/zLatent2ReconBatchLCH_2.lua)
