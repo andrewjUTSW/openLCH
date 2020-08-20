@@ -17,12 +17,12 @@ tar xvzf ./sample2000.tar.gz
 
 # Should now see directory called "data2"
 
+
 # 2) generate image file path list to be used by the training script.
 
 ls `pwd`/data2/*.png > imagePathList.txt
 
 # "imagePathList.txt" should look something like this
-
 head -n 3 ./imagePathList.txt 
 /your/working/path/data2/140604_mv3_s02_t60_x389_y1840_t290_t7Ready_f00136.png
 /your/working/path/data2/140604_mv3_s03_t60_x482_y1585_t184_t7Ready_f00075.png
@@ -30,6 +30,9 @@ head -n 3 ./imagePathList.txt
 
 # 3) Download sample code repo from github
 git clone https://github.com/andrewjUTSW/openLCH
+
+# alternative to (#2) test code with very small 100 mini data set included on the github repo
+# ls `pwd`/data/*.png > imagePathList.txt
 
 
 # 4) Set up working computing/GPU CUDA environment using Singularity (https://sylabs.io/singularity/)
