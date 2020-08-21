@@ -3,7 +3,9 @@
 - Extracting latent features from label-free live cell images using [Adversarial Autoencoders](https://arxiv.org/abs/1511.05644)
 	- Inspired by: https://github.com/AllenCellModeling/torch_integrated_cell/
 
-#### Manuscript pre-print: https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
+
+### [Manuscript pre-print:](https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1)
+- https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
 
 ![fig1](/img/LCH_smaller3_fig.png)
 ![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
