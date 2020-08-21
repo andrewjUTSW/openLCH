@@ -15,7 +15,7 @@
 Developed and tested on Red Hat Linux 7.
 
 ### Installation Steps
-- also see more detailed information [here](instructionsToinstallOpenLCH.sh) 
+- also see more detailed information [here](/instructionsToInstallOpenLCH.sh) 
 #### Containers
 
 - Set-up compute environment with containers:
@@ -24,7 +24,7 @@ Developed and tested on Red Hat Linux 7.
 	- Need CUDA 8.0+ compatible GPU and drivers (e.g. P100)
 	- Pull Singularity container .sif image file from [Singularity Hub](https://singularity-hub.org/)
 		- alternatively, a copy can be found [here](https://cloud.biohpc.swmed.edu/index.php/s/a88iQABCbg7SWwi/download)
-		- [Definition file](Singularity) provided in this repo  
+		- [Definition file](/Singularity) provided in this repo  
 	- `singularity pull shub://andrewjUTSW/openLCH:latest`
 	- Test GPU `singularity exec --nv ./openLCH_latest.sif nvidia-smi`
 
