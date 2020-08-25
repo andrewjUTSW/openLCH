@@ -26,7 +26,7 @@ Developed and tested on Red Hat Linux 7.
 		- alternatively, a copy can be found [here](https://cloud.biohpc.swmed.edu/index.php/s/a88iQABCbg7SWwi/download)
 		- [Definition file](/Singularity) provided in this repo  
 	- `singularity pull shub://andrewjUTSW/openLCH:latest`
-	- Test GPU `singularity exec --nv ./openLCH_latest.sif nvidia-smi`
+	- Test GPU `singularity exec --nv --cleanenv ./openLCH_latest.sif nvidia-smi`
 
 #### Download and Prepare Example Data
 
@@ -45,8 +45,8 @@ Developed and tested on Red Hat Linux 7.
 #### Linear interpolation between two reconstructed cell images using previously trained AAE
 - [interp_LatentSpace_LCH_MD_single_2.lua](code/interp_LatentSpace_LCH_MD_single_2.lua)
 ```bash
-	export LCH_PATH=YOUR_CODE_PATH_HERE
-	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	LCH_PATH=YOUR_CODE_PATH_HERE; \
 	th -i ./interp_LatentSpace_LCH_MD_single_2.lua \
 	-imPathFile $LCH_PATH/imagePathList.txt \
 	-autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
@@ -60,7 +60,8 @@ Developed and tested on Red Hat Linux 7.
 #### Train new AAE
 - [run_mainLCH_AAE_Train_2.lua](code/run_mainLCH_AAE_Train_2.lua)
 ```bash
-	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	LCH_PATH=YOUR_CODE_PATH_HERE; \
 	th ./run_mainLCH_AAE_Train_2.lua \
 	-modelname AAEconv_CLEAN \
 	-nLatentDims 56 \
@@ -74,7 +75,8 @@ Developed and tested on Red Hat Linux 7.
 #### Extract latent embeddings
 - [call_DynComputeEmbeddingsRobust_2.lua](code/call_DynComputeEmbeddingsRobust_2.lua)
 ```bash 
-	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	LCH_PATH=YOUR_CODE_PATH_HERE; \
 	th ./call_DynComputeEmbeddingsRobust_2.lua \
 	-autoencoder $LCH_PATH/outputNew/autoencoder_eval.t7 \
 	-imsize 256 \
@@ -90,6 +92,7 @@ Developed and tested on Red Hat Linux 7.
 
 ```bash
 	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	LCH_PATH=YOUR_CODE_PATH_HERE; \
 	th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
 	-imPathFile $LCH_PATH/imagePathList.txt \
 	-autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
@@ -103,7 +106,8 @@ Developed and tested on Red Hat Linux 7.
 #### Reconstruct images from latent codes
 - [zLatent2ReconBatchLCH_2.lua](code/zLatent2ReconBatchLCH_2.lua)
 ```bash
-	singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+	LCH_PATH=YOUR_CODE_PATH_HERE; \
 	th -i ./zLatent2ReconBatchLCH_2.lua \
 	-autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
 	-zLatentFile $LCH_PATH/outputNew/embeddings_sampleTest.csv \
