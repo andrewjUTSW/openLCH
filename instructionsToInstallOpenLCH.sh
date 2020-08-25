@@ -52,9 +52,6 @@ singularity exec --nv --cleanenv ./openLCH_latest.sif nvidia-smi # test GPU
 # (stored as a torch .t7 file)
 curl https://cloud.biohpc.swmed.edu/index.php/s/YAQQtpwTX2NKS89/download --output autoencoder_eval_56zTRAINED.t7
 
-# (optional) Set CODE PATH for convenience in scripts below
-export LCH_PATH=YOUR_CODE_PATH_HERE
-
 
 # 6) Quick test of torch code with previously trained autoencoder [Interpolation example]
 # Run example image interpolation in latent space to generate synthetic images between two sample images  
