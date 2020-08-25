@@ -45,7 +45,7 @@ singularity pull shub://andrewjUTSW/openLCH:latest
 # container binary also available here: https://cloud.biohpc.swmed.edu/index.php/s/a88iQABCbg7SWwi/download
 
 # verify containter GPU access works
-singularity exec --nv ./openLCH_latest.sif nvidia-smi # test GPU
+singularity exec --nv --cleanenv ./openLCH_latest.sif nvidia-smi # test GPU
 
 
 # 5) Download our previously trained autoencoder use this link
@@ -58,7 +58,8 @@ export LCH_PATH=YOUR_CODE_PATH_HERE
 
 # 6) Quick test of torch code with previously trained autoencoder [Interpolation example]
 # Run example image interpolation in latent space to generate synthetic images between two sample images  
-singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+LCH_PATH=YOUR_CODE_PATH_HERE; \
 th -i ./interp_LatentSpace_LCH_MD_single_2.lua \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
@@ -69,7 +70,8 @@ th -i ./interp_LatentSpace_LCH_MD_single_2.lua \
 
 
 # 7) Train new autoencoder on images, save output to "outputNew" directory
-singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+LCH_PATH=YOUR_CODE_PATH_HERE; \
 th ./run_mainLCH_AAE_Train_2.lua \
 -nLatentDims 56 \
 -imsize 256 \
@@ -87,7 +89,8 @@ th ./run_mainLCH_AAE_Train_2.lua \
 
 
 # 8) Extract new latent embedding vectors from newly trained Autoencoder
-singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+LCH_PATH=YOUR_CODE_PATH_HERE; \
 th ./call_DynComputeEmbeddingsRobust_2.lua \
 -autoencoder $LCH_PATH/outputNew/autoencoder_eval.t7 \
 -imsize 256 \
@@ -104,7 +107,7 @@ th ./call_DynComputeEmbeddingsRobust_2.lua \
 # 9) Reconstruction of Images from latent space.
 # using pre-trained autoencoder and computed embeddings from previous step
 # first 
-singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
 th -i ./zLatent2ReconBatchLCH_2.lua \
 -autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
 -zLatentFile $LCH_PATH/outputNew/embeddings_sampleTest.csv \
@@ -117,7 +120,8 @@ th -i ./zLatent2ReconBatchLCH_2.lua \
 #10) Illustration of Latent Space Exploration by shifting embedding values ("zShift")
 
 ## Example using TRAINED autoencoder
-singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+LCH_PATH=YOUR_CODE_PATH_HERE; \
 th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
@@ -127,7 +131,8 @@ th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
 -numSteps 6'
 
 # Example with newly trained autoencoder
-singularity exec --nv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+singularity exec --nv --cleanenv openLCH_latest.sif /bin/bash -c 'cd ./code; \
+LCH_PATH=YOUR_CODE_PATH_HERE; \
 th -i ./exploreZ_LatentSpace_LCH_single_2.lua \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -autoencoder $LCH_PATH/outputNew/autoencoder_eval.t7 \
