@@ -63,8 +63,8 @@ th -i ./interp_LatentSpace_LCH_MD_single_2.lua \
 -imPathFile $LCH_PATH/imagePathList.txt \
 -autoencoder $LCH_PATH/autoencoder_eval_56zTRAINED.t7 \
 -outDir $LCH_PATH/output/interpOut/ \
--img1 501 \
--img2 801 \
+-img1 51 \
+-img2 82 \
 -gpu 1'
 
 
