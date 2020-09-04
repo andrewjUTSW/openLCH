@@ -1,7 +1,7 @@
 require 'torch'
 require 'image'
 require 'paths'
--- require 'colormap' -- removing for now, fixing container
+require 'colormap'
 require 'utils'
 
 imtools_LCH = {}
