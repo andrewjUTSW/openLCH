@@ -12,3 +12,4 @@ git config --global url."https://".insteadOf git://
 # install missing threads
 rm -rf ~/.cache/luarocks
 luarocks install threads
+luarocks install colormap
