@@ -1,5 +1,8 @@
 -- This DataProvider Dynamically loads images from the paths table provided.
 
+-- Adapted from the Allen Institute for Cell Science
+-- https://github.com/AllenCellModeling/torch_integrated_cell/ 
+
 require 'nn'
 require 'torchx'
 require 'image'
