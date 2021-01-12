@@ -1,3 +1,6 @@
+-- Adapted from the Allen Institute for Cell Science
+-- https://github.com/AllenCellModeling/torch_integrated_cell/ 
+
 require 'torch'
 require 'image'
 require 'paths'
