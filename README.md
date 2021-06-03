@@ -6,8 +6,8 @@
 	- Inspired by: https://github.com/AllenCellModeling/torch_integrated_cell/
 
 
-### [Manuscript pre-print:](https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1)
-- https://www.biorxiv.org/content/10.1101/2020.05.15.096628v1 
+### [Manuscript](https://doi.org/10.1016/j.cels.2021.05.003)
+- https://doi.org/10.1016/j.cels.2021.05.003 
 
 ![fig1](/img/LCH_smaller3_fig.png)
 ![interp](/img/VideoS3_PairInterpolationExample_1244485_465651.gif)
