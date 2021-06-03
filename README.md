@@ -6,7 +6,7 @@
 	- Inspired by: https://github.com/AllenCellModeling/torch_integrated_cell/
 
 
-### [Manuscript](https://doi.org/10.1016/j.cels.2021.05.003)
+### [Manuscript (Cell Systems)](https://doi.org/10.1016/j.cels.2021.05.003)
 - https://doi.org/10.1016/j.cels.2021.05.003 
 
 ![fig1](/img/LCH_smaller3_fig.png)
